@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Download } from 'lucide-react';
+import { downloadResume } from '../utils/downloadUtils';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -36,6 +37,11 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
     setIsMenuOpen(false);
   };
 
+  const handleResumeDownload = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    downloadResume();
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
@@ -64,8 +70,9 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
               {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <a
-              href="/assets/manish resume.pdf"
-              download
+              href="/resume.pdf"
+              download="Manish_Sahu_Resume.pdf"
+              onClick={handleResumeDownload}
               className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-200 hover:scale-105"
             >
               <Download className="w-4 h-4" />
@@ -105,7 +112,8 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
             <div className="border-t border-gray-200 dark:border-gray-700 mt-2 pt-2">
               <a
                 href="/resume.pdf"
-                download
+                download="Manish_Sahu_Resume.pdf"
+                onClick={handleResumeDownload}
                 className="flex items-center gap-2 mx-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-200"
               >
                 <Download className="w-4 h-4" />
