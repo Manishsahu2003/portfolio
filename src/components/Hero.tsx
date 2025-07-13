@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [rotatingWords.length]);
 
   // Cursor blinking effect
   useEffect(() => {
@@ -122,7 +122,7 @@ const Hero: React.FC = () => {
                   className="transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateY(-${currentWordIndex * 4}rem)` }}
                 >
-                  {rotatingWords.map((word, index) => (
+                  {rotatingWords.map((word) => (
                     <p key={word} className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium h-16 flex items-center">
                       {word}
                     </p>
@@ -229,7 +229,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Custom CSS for additional animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-20px) rotate(180deg); }

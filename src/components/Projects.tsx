@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Github, ExternalLink, Code, Database, Cloud, Bot } from 'lucide-react';
+import { Github, ExternalLink, Code, Database, Cloud, Bot, Package, MessageCircle, Mail, Phone, Instagram } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -15,6 +15,14 @@ const Projects: React.FC = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
 
   const projects: Project[] = [
+    {
+      title: 'EC2 Instance Manager',
+      description: 'Flask API application for launching and managing AWS EC2 instances using Python boto3 library. Features instance creation, monitoring, and automated scaling.',
+      techStack: ['Python', 'Flask', 'boto3', 'AWS EC2', 'REST API'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Cloud,
+    },
     {
       title: 'Milk Adulteration Detection IoT',
       description: 'IoT-based system to detect milk adulteration using sensors and machine learning algorithms. Real-time monitoring with data analytics dashboard.',
@@ -62,6 +70,55 @@ const Projects: React.FC = () => {
       icon: Cloud,
     },
   ];
+
+  const minorProjects = {
+    docker: [
+      {
+        title: 'Docker Process Management',
+        description: 'Containerized application deployment and process management using Docker. Includes multi-stage builds and container orchestration.',
+        techStack: ['Docker', 'Docker Compose', 'Containerization', 'Process Management'],
+        githubUrl: 'https://github.com/Manishsahu2003',
+        icon: Package,
+      },
+      {
+        title: 'Firefox Setup in Docker',
+        description: 'Containerized Firefox browser setup with custom configurations and extensions for automated testing and development environments.',
+        techStack: ['Docker', 'Firefox', 'Browser Automation', 'Containerization'],
+        githubUrl: 'https://github.com/Manishsahu2003',
+        icon: Package,
+      },
+    ],
+    python: [
+      {
+        title: 'WhatsApp Message Automation',
+        description: 'Python script to send automated WhatsApp messages using web APIs and selenium for business communication and notifications.',
+        techStack: ['Python', 'Selenium', 'WhatsApp API', 'Automation'],
+        githubUrl: 'https://github.com/Manishsahu2003',
+        icon: MessageCircle,
+      },
+      {
+        title: 'Email Automation System',
+        description: 'Automated email sending system with templates, scheduling, and bulk email capabilities for marketing and notifications.',
+        techStack: ['Python', 'SMTP', 'Email Templates', 'Automation'],
+        githubUrl: 'https://github.com/Manishsahu2003',
+        icon: Mail,
+      },
+      {
+        title: 'Phone Call Automation',
+        description: 'Automated phone calling system using Python with voice synthesis and call management for customer service automation.',
+        techStack: ['Python', 'Twilio', 'Voice API', 'Call Automation'],
+        githubUrl: 'https://github.com/Manishsahu2003',
+        icon: Phone,
+      },
+      {
+        title: 'Instagram Post Automation',
+        description: 'Automated Instagram posting system with image processing, caption generation, and scheduled posting capabilities.',
+        techStack: ['Python', 'Instagram API', 'Image Processing', 'Social Media Automation'],
+        githubUrl: 'https://github.com/Manishsahu2003',
+        icon: Instagram,
+      },
+    ],
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -187,6 +244,58 @@ const Projects: React.FC = () => {
     );
   };
 
+  const MinorProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+    const IconComponent = project.icon;
+
+    return (
+      <div
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-100 dark:border-gray-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}
+        style={{ transitionDelay: `${index * 100}ms` }}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <div className="p-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-lg">
+            <IconComponent className="w-5 h-5 text-white" />
+          </div>
+          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+            {project.title}
+          </h4>
+        </div>
+        
+        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
+          {project.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-1 mb-3">
+          {project.techStack.slice(0, 2).map((tech: string) => (
+            <span
+              key={tech}
+              className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-xs font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+          {project.techStack.length > 2 && (
+            <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs">
+              +{project.techStack.length - 2} more
+            </span>
+          )}
+        </div>
+        
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium transition-colors"
+        >
+          <Github className="w-4 h-4" />
+          View Code
+        </a>
+      </div>
+    );
+  };
+
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -207,10 +316,53 @@ const Projects: React.FC = () => {
               <ProjectCard key={project.title} project={project} index={index} />
             ))}
           </div>
+
+          {/* Minor Projects Section */}
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-center mb-12">
+              <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                Minor Projects
+              </span>
+            </h3>
+
+            {/* Docker Subsection */}
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg">
+                  <Package className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Docker Projects
+                </h4>
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {minorProjects.docker.map((project, index) => (
+                  <MinorProjectCard key={project.title} project={project} index={index} />
+                ))}
+              </div>
+            </div>
+
+            {/* Python Subsection */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg">
+                  <Code className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Python Automation Projects
+                </h4>
+              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {minorProjects.python.map((project, index) => (
+                  <MinorProjectCard key={project.title} project={project} index={index} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .preserve-3d {
           transform-style: preserve-3d;
         }

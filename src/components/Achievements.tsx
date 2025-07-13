@@ -128,7 +128,6 @@ const Achievements: React.FC = () => {
   };
 
   const certifications = achievements.filter(item => item.type === 'certification');
-  const achievementsList = achievements.filter(item => item.type === 'achievement');
 
   return (
     <section id="achievements" className="py-20 bg-gray-50 dark:bg-gray-800">

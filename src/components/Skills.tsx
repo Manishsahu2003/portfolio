@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 
 interface Skill {
   name: string;
@@ -16,7 +16,7 @@ const Skills: React.FC = () => {
   const [animatedSkills, setAnimatedSkills] = useState<Set<string>>(new Set());
   const skillsRef = useRef<HTMLDivElement>(null);
 
-  const skillCategories: SkillCategory[] = [
+  const skillCategories: SkillCategory[] = useMemo(() => [
     {
       title: 'Languages',
       skills: [
@@ -48,7 +48,7 @@ const Skills: React.FC = () => {
         { name: 'IoT', percentage: 78, color: 'from-purple-400 to-purple-600' },
       ],
     },
-  ];
+  ], []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -73,9 +73,9 @@ const Skills: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [skillCategories]);
 
-  const SkillBar: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
+  const SkillBar: React.FC<{ skill: Skill; index: number }> = ({ skill }) => {
     const isAnimated = animatedSkills.has(skill.name);
     
     return (
