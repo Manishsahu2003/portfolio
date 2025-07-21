@@ -15,6 +15,7 @@ const Achievements: React.FC = () => {
   const achievementsRef = useRef<HTMLDivElement>(null);
 
   const achievements: Achievement[] = [
+    // Certifications
     {
       title: 'AWS Cloud Practitioner',
       description: 'Certified AWS Cloud Practitioner with comprehensive knowledge of cloud computing fundamentals and AWS services.',
@@ -36,6 +37,7 @@ const Achievements: React.FC = () => {
       color: 'from-blue-400 to-blue-600',
       type: 'certification',
     },
+    // Achievements (do not include the above three)
     {
       title: 'Winner – CodeFiest 3.0',
       description: 'First place winner at CodeFiest 3.0 competition, demonstrating exceptional coding skills and problem-solving abilities.',
