@@ -8,6 +8,7 @@ interface Project {
   githubUrl: string;
   liveUrl?: string;
   icon: React.ComponentType<{ className?: string }>;
+  domain: string; // NEW
 }
 
 const Projects: React.FC = () => {
@@ -16,35 +17,39 @@ const Projects: React.FC = () => {
 
   const projects: Project[] = [
     {
+      title: 'AWS EC2 Automation via API Gateway & Lambda',
+      description: 'Built a serverless automation pipeline where AWS API Gateway receives HTTP requests and triggers a Lambda function (Python + boto3) to launch EC2 instances in real time. Demonstrates event-driven, scalable cloud infrastructure using serverless AWS components.',
+      techStack: ['AWS Lambda', 'API Gateway', 'Python', 'boto3', 'EC2', 'Serverless'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Cloud,
+      domain: 'Cloud & DevOps',
+    },
+    {
+      title: 'Flask App CI/CD with Docker, Jenkins & Kubernetes',
+      description: 'Developed a Flask-based Python application, containerized it with Docker, and implemented a robust CI/CD pipeline using GitHub, Jenkins, Docker Hub, and Kubernetes. Automated build, test, and deployment workflows, with Kubernetes managing scalable deployments and service exposure on Port 5000.',
+      techStack: ['Python', 'Flask', 'Docker', 'Jenkins', 'Docker Hub', 'Kubernetes', 'GitHub'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Cloud,
+      domain: 'Cloud & DevOps',
+    },
+    {
       title: 'EC2 Instance Manager',
       description: 'Flask API application for launching and managing AWS EC2 instances using Python boto3 library. Features instance creation, monitoring, and automated scaling.',
       techStack: ['Python', 'Flask', 'boto3', 'AWS EC2', 'REST API'],
       githubUrl: 'https://github.com/Manishsahu2003',
       liveUrl: '#',
       icon: Cloud,
+      domain: 'Cloud & DevOps',
     },
     {
-      title: 'Milk Adulteration Detection IoT',
-      description: 'IoT-based system to detect milk adulteration using sensors and machine learning algorithms. Real-time monitoring with data analytics dashboard.',
-      techStack: ['IoT', 'Python', 'Machine Learning', 'Streamlit', 'Arduino'],
+      title: 'CI/CD Automation Pipeline',
+      description: 'End-to-end CI/CD pipeline using GitHub Actions, Jenkins, and Docker. Automated testing, building, and deployment to AWS EC2.',
+      techStack: ['Jenkins', 'Docker', 'GitHub Actions', 'AWS', 'Terraform'],
       githubUrl: 'https://github.com/Manishsahu2003',
-      liveUrl: '#',
-      icon: Database,
-    },
-    {
-      title: 'NutriScan – Hackathon Winner',
-      description: 'Award-winning nutrition analysis application that scans food items and provides detailed nutritional information using computer vision.',
-      techStack: ['Python', 'OpenCV', 'Flask', 'Machine Learning', 'API'],
-      githubUrl: 'https://github.com/Manishsahu2003',
-      liveUrl: '#',
-      icon: Bot,
-    },
-    {
-      title: 'Cab Fare Prediction Model',
-      description: 'Machine learning model to predict cab fares based on various parameters like distance, time, weather conditions, and traffic.',
-      techStack: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Jupyter'],
-      githubUrl: 'https://github.com/Manishsahu2003',
-      icon: Code,
+      icon: Cloud,
+      domain: 'Cloud & DevOps',
     },
     {
       title: 'Flask App Deployed on AWS',
@@ -53,6 +58,7 @@ const Projects: React.FC = () => {
       githubUrl: 'https://github.com/Manishsahu2003',
       liveUrl: '#',
       icon: Cloud,
+      domain: 'Cloud & DevOps',
     },
     {
       title: 'GenAI Bug Fixing Tool',
@@ -61,15 +67,52 @@ const Projects: React.FC = () => {
       githubUrl: 'https://github.com/Manishsahu2003',
       liveUrl: '#',
       icon: Bot,
+      domain: 'AI/ML & Data Science',
     },
     {
-      title: 'CI/CD Automation Pipeline',
-      description: 'End-to-end CI/CD pipeline using GitHub Actions, Jenkins, and Docker. Automated testing, building, and deployment to AWS EC2.',
-      techStack: ['Jenkins', 'Docker', 'GitHub Actions', 'AWS', 'Terraform'],
+      title: 'GenAI AWS Expert Advisor',
+      description: 'Developed an AWS Expert Advisor using OpenAI and Gemini APIs. The system performs AWS web scraping and leverages GenAI to provide expert recommendations and insights for AWS users.',
+      techStack: ['OpenAI API', 'Gemini', 'Python', 'Web Scraping', 'AWS', 'GenAI'],
       githubUrl: 'https://github.com/Manishsahu2003',
-      icon: Cloud,
+      liveUrl: '#',
+      icon: Bot,
+      domain: 'AI/ML & Data Science',
+    },
+    {
+      title: 'Cab Fare Prediction Model',
+      description: 'Machine learning model to predict cab fares based on various parameters like distance, time, weather conditions, and traffic.',
+      techStack: ['Python', 'Scikit-learn', 'Pandas', 'NumPy', 'Jupyter'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      icon: Code,
+      domain: 'AI/ML & Data Science',
+    },
+    {
+      title: 'NutriScan – Hackathon Winner',
+      description: 'Award-winning nutrition analysis application that scans food items and provides detailed nutritional information using computer vision.',
+      techStack: ['Python', 'OpenCV', 'Flask', 'Machine Learning', 'API'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Bot,
+      domain: 'AI/ML & Data Science',
+    },
+    {
+      title: 'Milk Adulteration Detection IoT',
+      description: 'IoT-based system to detect milk adulteration using sensors and machine learning algorithms. Real-time monitoring with data analytics dashboard.',
+      techStack: ['IoT', 'Python', 'Machine Learning', 'Streamlit', 'Arduino'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Database,
+      domain: 'IoT & Automation',
     },
   ];
+
+  // Group projects by domain
+  const domainOrder = ['Cloud & DevOps', 'AI/ML & Data Science', 'IoT & Automation'];
+  const projectsByDomain: { [domain: string]: Project[] } = {};
+  projects.forEach((project) => {
+    if (!projectsByDomain[project.domain]) projectsByDomain[project.domain] = [];
+    projectsByDomain[project.domain].push(project);
+  });
 
   const minorProjects = {
     docker: [
@@ -79,6 +122,7 @@ const Projects: React.FC = () => {
         techStack: ['Docker', 'Docker Compose', 'Containerization', 'Process Management'],
         githubUrl: 'https://github.com/Manishsahu2003',
         icon: Package,
+        domain: 'DevOps & Containerization',
       },
       {
         title: 'Firefox Setup in Docker',
@@ -86,6 +130,7 @@ const Projects: React.FC = () => {
         techStack: ['Docker', 'Firefox', 'Browser Automation', 'Containerization'],
         githubUrl: 'https://github.com/Manishsahu2003',
         icon: Package,
+        domain: 'DevOps & Containerization',
       },
     ],
     python: [
@@ -95,6 +140,7 @@ const Projects: React.FC = () => {
         techStack: ['Python', 'Selenium', 'WhatsApp API', 'Automation'],
         githubUrl: 'https://github.com/Manishsahu2003',
         icon: MessageCircle,
+        domain: 'Automation & Scripting',
       },
       {
         title: 'Email Automation System',
@@ -102,6 +148,7 @@ const Projects: React.FC = () => {
         techStack: ['Python', 'SMTP', 'Email Templates', 'Automation'],
         githubUrl: 'https://github.com/Manishsahu2003',
         icon: Mail,
+        domain: 'Automation & Scripting',
       },
       {
         title: 'Phone Call Automation',
@@ -109,6 +156,7 @@ const Projects: React.FC = () => {
         techStack: ['Python', 'Twilio', 'Voice API', 'Call Automation'],
         githubUrl: 'https://github.com/Manishsahu2003',
         icon: Phone,
+        domain: 'Automation & Scripting',
       },
       {
         title: 'Instagram Post Automation',
@@ -116,6 +164,7 @@ const Projects: React.FC = () => {
         techStack: ['Python', 'Instagram API', 'Image Processing', 'Social Media Automation'],
         githubUrl: 'https://github.com/Manishsahu2003',
         icon: Instagram,
+        domain: 'Automation & Scripting',
       },
     ],
   };
@@ -311,11 +360,21 @@ const Projects: React.FC = () => {
             </span>
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
-            ))}
-          </div>
+          {/* Domain-wise Project Sections */}
+          {domainOrder.map((domain) => (
+            projectsByDomain[domain] && projectsByDomain[domain].length > 0 && (
+              <div key={domain} className="mb-16">
+                <h3 className="text-2xl md:text-3xl font-bold mb-8 text-left md:text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                  {domain}
+                </h3>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {projectsByDomain[domain].map((project, index) => (
+                    <ProjectCard key={project.title} project={project} index={index} />
+                  ))}
+                </div>
+              </div>
+            )
+          ))}
 
           {/* Minor Projects Section */}
           <div className="mt-20">

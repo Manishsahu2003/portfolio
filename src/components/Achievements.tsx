@@ -23,24 +23,17 @@ const Achievements: React.FC = () => {
       type: 'certification',
     },
     {
+      title: 'Python Certification',
+      description: 'Certified in Python programming, demonstrating proficiency in core concepts, scripting, and automation.',
+      icon: Award,
+      color: 'from-yellow-400 to-yellow-600',
+      type: 'certification',
+    },
+    {
       title: 'SQL Certification',
       description: 'Advanced SQL certification demonstrating expertise in database management and complex query optimization.',
       icon: Award,
       color: 'from-blue-400 to-blue-600',
-      type: 'certification',
-    },
-    {
-      title: 'GenAI by GDG',
-      description: 'Specialized certification in Generative AI technologies and implementation strategies from Google Developer Group.',
-      icon: Award,
-      color: 'from-purple-400 to-purple-600',
-      type: 'certification',
-    },
-    {
-      title: 'Hackathon Participation',
-      description: 'Active participant in multiple hackathons, contributing to innovative solutions and collaborative development.',
-      icon: Trophy,
-      color: 'from-green-400 to-green-600',
       type: 'certification',
     },
     {

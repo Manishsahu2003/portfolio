@@ -46,6 +46,8 @@ const Skills: React.FC = () => {
         { name: 'AWS', percentage: 85, color: 'from-orange-400 to-orange-600' },
         { name: 'CI/CD', percentage: 80, color: 'from-green-400 to-green-600' },
         { name: 'IoT', percentage: 78, color: 'from-purple-400 to-purple-600' },
+        { name: 'Kubernetes', percentage: 80, color: 'from-blue-500 to-blue-700' },
+        { name: 'Ansible', percentage: 75, color: 'from-red-500 to-yellow-500' },
       ],
     },
   ], []);
