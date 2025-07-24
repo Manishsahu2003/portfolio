@@ -37,6 +37,7 @@ const Skills: React.FC = () => {
         { name: 'Jenkins', percentage: 85, color: 'from-red-400 to-red-600' },
         { name: 'Streamlit', percentage: 80, color: 'from-red-400 to-red-600' },
         { name: 'NumPy', percentage: 75, color: 'from-blue-400 to-blue-600' },
+        { name: 'Prometheus', percentage: 70, color: 'from-pink-500 to-yellow-500' },
       ],
     },
     {

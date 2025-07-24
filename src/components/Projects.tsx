@@ -104,6 +104,24 @@ const Projects: React.FC = () => {
       icon: Database,
       domain: 'IoT & Automation',
     },
+    {
+      title: 'Multicontainer Microservices for Flask App',
+      description: 'Designed and implemented a microservices architecture using Docker Compose. The system includes separate Flask-based User Registration and User Details services, each running in its own container, with Postgres and Redis as backend services. All containers communicate over a Docker network, demonstrating scalable, modular DevOps practices.',
+      techStack: ['Flask', 'Docker', 'Docker Compose', 'Microservices', 'Postgres', 'Redis'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Cloud,
+      domain: 'Cloud & DevOps',
+    },
+    {
+      title: 'Event-Driven Architecture on AWS',
+      description: 'Implemented an event-driven architecture using AWS services. File uploads to an S3 bucket trigger Lambda functions, which process the event and invoke AWS SNS to send notifications. This project demonstrates automation, real-time processing, and scalable cloud-native design.',
+      techStack: ['AWS S3', 'AWS Lambda', 'AWS SNS', 'Event-Driven', 'Automation'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      liveUrl: '#',
+      icon: Cloud,
+      domain: 'Cloud & DevOps',
+    },
   ];
 
   // Group projects by domain
