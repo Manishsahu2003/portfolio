@@ -4,34 +4,6 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
-      colors: {
-        primary: {
-          light: '#a5b4fc',
-          DEFAULT: '#6366f1',
-          dark: '#4338ca',
-        },
-        accent: {
-          light: '#c4b5fd',
-          DEFAULT: '#a21caf',
-          dark: '#701a75',
-        },
-        background: {
-          light: '#f8fafc',
-          DEFAULT: '#e0e7ff',
-          dark: '#312e81',
-        },
-      },
-      boxShadow: {
-        card: '0 4px 32px rgba(80,80,200,0.08), 0 1.5px 6px rgba(80,80,200,0.04)',
-      },
-      borderRadius: {
-        xl: '1.25rem',
-        '2xl': '1.5rem',
-        '3xl': '2rem',
-      },
       animation: {
         'bounce': 'bounce 1s infinite',
         'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
