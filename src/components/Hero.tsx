@@ -64,12 +64,15 @@ const Hero: React.FC = () => {
 
   // AI Assistant logic
   const aiResponses: { [key: string]: string } = {
-    'who are you': "I'm Manish Sahu, a B.Tech Computer Science student from Udaipur, passionate about DevOps, Cloud Computing, and AI/ML. I specialize in AWS, automation, and scalable deployments.",
-    'what skills do you have': "My skills include Python, Docker, Jenkins, AWS, Linux, CI/CD, SQL, C++, HTML, CSS, pandas, Streamlit, and more.",
-    'what work do you do': "I work on cloud automation, DevOps pipelines, AI/ML projects, and scalable application deployments. I build solutions using AWS, Docker, Jenkins, and Python.",
-    'what are your achievements': "I've won multiple hackathons, am an AWS Cloud Practitioner, and have certifications in SQL and GenAI. I've also led cloud and social media initiatives.",
-    'how to contact you': "You can contact me at manishsahu81128@gmail.com or via LinkedIn: https://www.linkedin.com/in/manish-sahu99/",
-    'projects': "Some of my projects include AWS EC2 automation via Lambda, Flask CI/CD with Docker & Kubernetes, IoT milk adulteration detection, and more."
+    'who are you': "I'm Manish Sahu, a B.Tech Computer Science student from Udaipur, passionate about DevOps, Cloud Computing, and AI/ML. I specialize in AWS, automation, and scalable deployments. I have 5+ projects, 4+ certifications, and work with 10+ technologies.",
+    'what skills do you have': "My technical skills include: Languages (Python, SQL, C++, C, HTML, CSS), Tools (Docker, GitHub, pandas, Jenkins, Streamlit, NumPy, boto3, Prometheus), and Platforms & DevOps (Linux, AWS, CI/CD, IoT, Kubernetes, Ansible). I'm also experienced with computer vision, gesture recognition, and automation.",
+    'what work do you do': "I work on cloud automation, DevOps pipelines, AI/ML projects, and scalable application deployments. My projects include hand gesture-controlled AWS instance management, Flask CI/CD with Docker & Kubernetes, IoT milk adulteration detection, GenAI bug fixing tools, and multicontainer microservices. I build solutions using AWS, Docker, Jenkins, and Python.",
+    'what are your achievements': "I've won multiple hackathons including NutriScan (Hackathon Winner), am an AWS Cloud Practitioner, and have certifications in SQL and GenAI. I've also led cloud and social media initiatives. I have 3+ awards and specialize in innovative automation solutions.",
+    'how to contact you': "You can contact me at manishsahu81128@gmail.com or via LinkedIn: https://www.linkedin.com/in/manish-sahu99/. I'm currently open to work and available for new opportunities.",
+    'projects': "My featured projects include: 1) Hand Gesture-Controlled AWS Instance Management (OpenCV + Boto3), 2) AWS EC2 Automation via API Gateway & Lambda, 3) Flask App CI/CD with Docker, Jenkins & Kubernetes, 4) GenAI Bug Fixing Tool, 5) GenAI AWS Expert Advisor, 6) NutriScan (Hackathon Winner), 7) Milk Adulteration Detection IoT, 8) Multicontainer Microservices, and 9) Event-Driven Architecture on AWS. I also have minor projects in Docker and Python automation.",
+    'education': "I'm currently pursuing B.Tech in Computer Science. I'm based in Udaipur, India and passionate about bridging the gap between development and operations by delivering reliable, production-ready solutions.",
+    'specializations': "I specialize in DevOps Engineering, AWS Cloud Computing, AI/ML development, and automation. My mission is to bridge the gap between development and operations by delivering reliable, production-ready solutions with speed and precision.",
+    'technologies': "I work with Python, Docker, Jenkins, AWS (EC2, Lambda, S3, SNS), Linux, CI/CD, SQL, C++, HTML, CSS, pandas, Streamlit, NumPy, boto3, OpenCV, Kubernetes, Ansible, and various automation tools. I'm experienced in computer vision, gesture recognition, and IoT applications."
   };
 
   function getAIResponse(input: string): string {
@@ -80,7 +83,10 @@ const Hero: React.FC = () => {
     if (normalized.includes('achieve') || normalized.includes('award')) return aiResponses['what are your achievements'];
     if (normalized.includes('contact') || normalized.includes('email')) return aiResponses['how to contact you'];
     if (normalized.includes('project')) return aiResponses['projects'];
-    return "I'm your AI assistant! Ask me about my skills, work, achievements, or how to contact me.";
+    if (normalized.includes('education') || normalized.includes('study')) return aiResponses['education'];
+    if (normalized.includes('specializ') || normalized.includes('focus')) return aiResponses['specializations'];
+    if (normalized.includes('technolog') || normalized.includes('tech') || normalized.includes('tools')) return aiResponses['technologies'];
+    return "I'm your AI assistant! Ask me about my skills, work, achievements, projects, education, specializations, technologies, or how to contact me.";
   }
 
   const [showChat, setShowChat] = useState(false);
@@ -126,6 +132,7 @@ const Hero: React.FC = () => {
         <div className="absolute bottom-1/4 right-1/4 w-12 h-12 border-2 border-purple-300/30 rotate-12 animate-bounce"></div>
       </div>
 
+
       {/* Center Animated SVG Blob */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none">
         <svg width="480" height="480" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[340px] md:w-[480px] h-[340px] md:h-[480px] opacity-60 blur-2xl animate-blob-morph">
@@ -151,30 +158,29 @@ const Hero: React.FC = () => {
             {/* Animated greeting */}
             <div className="animate-fade-in-up">
               <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-6 h-6 text-yellow-500 animate-pulse" />
-                <span className="text-lg text-gray-600 dark:text-gray-400 font-medium">
+                <Sparkles className="w-8 h-8 text-yellow-500 animate-pulse" />
+                <span className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-medium">
                   Hello, I'm
                 </span>
               </div>
             </div>
 
-            {/* Enhanced name with typewriter effect */}
+            {/* Static name display */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-bold animate-fade-in-up delay-200">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold animate-fade-in-up delay-200">
                 <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-                  {displayedText}
-                  {(isTyping || showCursor) && <span className="animate-pulse">|</span>}
+                  {fullText}
                 </span>
               </h1>
               
               {/* Rotating designation with smooth transitions */}
-              <div className="h-16 overflow-hidden animate-fade-in-up delay-400">
+              <div className="h-20 overflow-hidden animate-fade-in-up delay-400">
                 <div 
                   className="transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateY(-${currentWordIndex * 4}rem)` }}
+                  style={{ transform: `translateY(-${currentWordIndex * 5}rem)` }}
                 >
                   {rotatingWords.map((word) => (
-                    <p key={word} className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium h-16 flex items-center">
+                    <p key={word} className="text-2xl md:text-3xl lg:text-4xl text-gray-700 dark:text-gray-300 font-medium h-20 flex items-center">
                       {word}
                     </p>
                   ))}
@@ -183,17 +189,17 @@ const Hero: React.FC = () => {
               
               {/* Location with animated icon */}
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 animate-fade-in-up delay-600">
-                <MapPin className="w-5 h-5 animate-bounce" />
-                <span>Udaipur, India</span>
+                <MapPin className="w-6 h-6 animate-bounce" />
+                <span className="text-lg md:text-xl">Udaipur, India</span>
               </div>
 
               {/* Enhanced availability badge */}
               <div className="flex items-center gap-2 animate-fade-in-up delay-800">
                 <div className="relative">
-                  <CheckCircle className="w-5 h-5 text-green-500 animate-pulse" />
-                  <div className="absolute inset-0 w-5 h-5 bg-green-500 rounded-full animate-ping opacity-20"></div>
+                  <CheckCircle className="w-6 h-6 text-green-500 animate-pulse" />
+                  <div className="absolute inset-0 w-6 h-6 bg-green-500 rounded-full animate-ping opacity-20"></div>
                 </div>
-                <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent font-semibold animate-pulse">
+                <span className="text-lg md:text-xl bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent font-semibold animate-pulse">
                   ✅ Open to Work
                 </span>
               </div>
@@ -216,14 +222,14 @@ const Hero: React.FC = () => {
             <div className="flex flex-wrap gap-4 pt-4 animate-fade-in-up delay-1200">
               <button 
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 transform relative overflow-hidden"
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all duration-300 hover:scale-105 transform relative overflow-hidden"
               >
                 <span className="relative z-10">Get In Touch</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
               <button 
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 transform relative overflow-hidden"
+                className="group border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-10 py-4 rounded-lg font-semibold text-lg hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 transform relative overflow-hidden"
               >
                 <span className="relative z-10">View Projects</span>
                 <div className="absolute inset-0 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -233,45 +239,14 @@ const Hero: React.FC = () => {
 
           {/* Right Side - Enhanced Profile Image */}
           <div className="flex justify-center lg:justify-end animate-fade-in-up delay-300">
-            <div className="relative group">
-              {/* Outer rotating ring */}
-              <div className="absolute inset-0 w-80 h-80 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-spin-slow opacity-75"></div>
-              
-              {/* Middle ring with pulse */}
-              <div className="relative w-80 h-80 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-2 shadow-2xl animate-pulse">
+            <div className="relative">
+              <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 p-2 shadow-2xl">
                 <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center shadow-inner relative overflow-hidden">
-                  {/* Profile image with hover effects */}
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-                    <img
-                      src="/assets/manish.jpg"
-                      alt="Manish Sahu"
-                      className="w-full h-full object-cover rounded-full group-hover:brightness-110 transition-all duration-500"
-                    />
-                    
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating elements around profile */}
-              <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-bounce">
-                <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-full animate-pulse"></div>
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg animate-bounce delay-500">
-                <div className="w-6 h-6 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full animate-pulse"></div>
-              </div>
-              <div className="absolute top-1/2 -right-8 bg-white dark:bg-gray-800 rounded-full p-2 shadow-lg animate-bounce delay-1000">
-                <div className="w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full animate-pulse"></div>
-              </div>
-              
-              {/* Orbiting elements */}
-              <div className="absolute inset-0 animate-spin-slow">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-                </div>
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2">
-                  <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-500"></div>
+                  <img
+                    src="/assets/manish.jpg"
+                    alt="Manish Sahu"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
               </div>
             </div>
@@ -330,6 +305,22 @@ const Hero: React.FC = () => {
         )}
       </div>
 
+      {/* Wave Effect */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+        <svg
+          className="relative block w-full h-16 sm:h-20 md:h-24 lg:h-32"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            className="fill-white dark:fill-gray-900"
+          ></path>
+        </svg>
+      </div>
+
       {/* Custom CSS for additional animations */}
       <style>{`
         @keyframes float {
@@ -353,12 +344,21 @@ const Hero: React.FC = () => {
           }
         }
         
+        @keyframes wave {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(-25px); }
+        }
+        
         .animate-spin-slow {
           animation: spin-slow 20s linear infinite;
         }
         
         .animate-fade-in-up {
           animation: fade-in-up 0.8s ease-out forwards;
+        }
+        
+        .animate-wave {
+          animation: wave 6s ease-in-out infinite;
         }
         
         .delay-200 { animation-delay: 0.2s; }
