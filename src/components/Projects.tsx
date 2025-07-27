@@ -101,7 +101,7 @@ const Projects: React.FC = () => {
       githubUrl: 'https://github.com/Manishsahu2003',
       liveUrl: '#',
       icon: Bot,
-      domain: 'AI/ML & Data Science',
+      domain: 'IoT & Automation',
     },
     {
       title: 'Milk Adulteration Detection IoT',
