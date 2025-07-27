@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Github, ExternalLink, Code, Database, Cloud, Bot, Package, MessageCircle, Mail, Phone, Instagram } from 'lucide-react';
+import { Github, Code, Database, Cloud, Bot, Package, MessageCircle, Mail, Phone, Instagram } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -16,6 +16,14 @@ const Projects: React.FC = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
 
   const projects: Project[] = [
+    {
+      title: 'Hand Gesture-Controlled AWS Instance Management',
+      description: 'Innovative system that uses hand gestures to control AWS EC2 instances. Python application with OpenCV for gesture recognition and Boto3 for AWS integration. Users can launch or stop instances using simple hand movements, demonstrating advanced automation and human-computer interaction.',
+      techStack: ['Python', 'OpenCV', 'Boto3', 'AWS EC2', 'Gesture Recognition', 'Computer Vision'],
+      githubUrl: 'https://github.com/Manishsahu2003',
+      icon: Cloud,
+      domain: 'Cloud & DevOps',
+    },
     {
       title: 'AWS EC2 Automation via API Gateway & Lambda',
       description: 'Built a serverless automation pipeline where AWS API Gateway receives HTTP requests and triggers a Lambda function (Python + boto3) to launch EC2 instances in real time. Demonstrates event-driven, scalable cloud infrastructure using serverless AWS components.',
@@ -281,7 +289,7 @@ const Projects: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex gap-3">
+              <div className="flex justify-center">
                 <a
                   href={project.githubUrl}
                   target="_blank"
@@ -289,20 +297,8 @@ const Projects: React.FC = () => {
                   className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105"
                 >
                   <Github className="w-4 h-4" />
-                  <span className="text-sm">Code</span>
+                  <span className="text-sm">View Code</span>
                 </a>
-                
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-all duration-200 hover:scale-105"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span className="text-sm">Live</span>
-                  </a>
-                )}
               </div>
             </div>
           </div>
@@ -385,11 +381,11 @@ const Projects: React.FC = () => {
                 <h3 className="text-2xl md:text-3xl font-bold mb-8 text-left md:text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
                   {domain}
                 </h3>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {projectsByDomain[domain].map((project, index) => (
-                    <ProjectCard key={project.title} project={project} index={index} />
-                  ))}
-                </div>
+              <ProjectCard key={project.title} project={project} index={index} />
+            ))}
+          </div>
               </div>
             )
           ))}

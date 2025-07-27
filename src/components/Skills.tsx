@@ -1,9 +1,28 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { 
+  Code, 
+  Database, 
+  Cloud, 
+  GitBranch, 
+  Package, 
+  Github, 
+  Server, 
+  Zap,
+  Cpu,
+  Globe,
+  Terminal,
+  Settings,
+  Monitor,
+  HardDrive,
+  Network,
+  Shield
+} from 'lucide-react';
 
 interface Skill {
   name: string;
-  percentage: number;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
+  category: string;
 }
 
 interface SkillCategory {
@@ -20,35 +39,36 @@ const Skills: React.FC = () => {
     {
       title: 'Languages',
       skills: [
-        { name: 'Python', percentage: 92, color: 'from-yellow-400 to-yellow-600' },
-        { name: 'SQL', percentage: 83, color: 'from-blue-400 to-blue-600' },
-        { name: 'C++', percentage: 74, color: 'from-blue-500 to-blue-700' },
-        { name: 'C', percentage: 70, color: 'from-gray-400 to-gray-600' },
-        { name: 'HTML', percentage: 90, color: 'from-orange-400 to-orange-600' },
-        { name: 'CSS', percentage: 88, color: 'from-blue-400 to-blue-600' },
+        { name: 'Python', icon: Code, color: 'from-yellow-400 to-yellow-600', category: 'Languages' },
+        { name: 'SQL', icon: Database, color: 'from-blue-400 to-blue-600', category: 'Languages' },
+        { name: 'C++', icon: Code, color: 'from-blue-500 to-blue-700', category: 'Languages' },
+        { name: 'C', icon: Code, color: 'from-gray-400 to-gray-600', category: 'Languages' },
+        { name: 'HTML', icon: Globe, color: 'from-orange-400 to-orange-600', category: 'Languages' },
+        { name: 'CSS', icon: Globe, color: 'from-blue-400 to-blue-600', category: 'Languages' },
       ],
     },
     {
       title: 'Tools',
       skills: [
-        { name: 'Docker', percentage: 90, color: 'from-blue-400 to-blue-600' },
-        { name: 'GitHub', percentage: 88, color: 'from-gray-700 to-gray-900' },
-        { name: 'pandas', percentage: 86, color: 'from-purple-400 to-purple-600' },
-        { name: 'Jenkins', percentage: 85, color: 'from-red-400 to-red-600' },
-        { name: 'Streamlit', percentage: 80, color: 'from-red-400 to-red-600' },
-        { name: 'NumPy', percentage: 75, color: 'from-blue-400 to-blue-600' },
-        { name: 'Prometheus', percentage: 70, color: 'from-pink-500 to-yellow-500' },
+        { name: 'Docker', icon: Package, color: 'from-blue-400 to-blue-600', category: 'Tools' },
+        { name: 'GitHub', icon: Github, color: 'from-gray-700 to-gray-900', category: 'Tools' },
+        { name: 'pandas', icon: Database, color: 'from-purple-400 to-purple-600', category: 'Tools' },
+        { name: 'Jenkins', icon: Server, color: 'from-red-400 to-red-600', category: 'Tools' },
+        { name: 'Streamlit', icon: Monitor, color: 'from-red-400 to-red-600', category: 'Tools' },
+        { name: 'NumPy', icon: Cpu, color: 'from-blue-400 to-blue-600', category: 'Tools' },
+        { name: 'boto3', icon: Cloud, color: 'from-orange-400 to-orange-600', category: 'Tools' },
+        { name: 'Prometheus', icon: Monitor, color: 'from-pink-500 to-yellow-500', category: 'Tools' },
       ],
     },
     {
       title: 'Platforms & DevOps',
       skills: [
-        { name: 'Linux', percentage: 95, color: 'from-yellow-400 to-yellow-600' },
-        { name: 'AWS', percentage: 85, color: 'from-orange-400 to-orange-600' },
-        { name: 'CI/CD', percentage: 80, color: 'from-green-400 to-green-600' },
-        { name: 'IoT', percentage: 78, color: 'from-purple-400 to-purple-600' },
-        { name: 'Kubernetes', percentage: 80, color: 'from-blue-500 to-blue-700' },
-        { name: 'Ansible', percentage: 75, color: 'from-red-500 to-yellow-500' },
+        { name: 'Linux', icon: Terminal, color: 'from-yellow-400 to-yellow-600', category: 'Platforms & DevOps' },
+        { name: 'AWS', icon: Cloud, color: 'from-orange-400 to-orange-600', category: 'Platforms & DevOps' },
+        { name: 'CI/CD', icon: GitBranch, color: 'from-green-400 to-green-600', category: 'Platforms & DevOps' },
+        { name: 'IoT', icon: HardDrive, color: 'from-purple-400 to-purple-600', category: 'Platforms & DevOps' },
+        { name: 'Kubernetes', icon: Settings, color: 'from-blue-500 to-blue-700', category: 'Platforms & DevOps' },
+        { name: 'Ansible', icon: Zap, color: 'from-red-500 to-yellow-500', category: 'Platforms & DevOps' },
       ],
     },
   ], []);
@@ -78,29 +98,35 @@ const Skills: React.FC = () => {
     return () => observer.disconnect();
   }, [skillCategories]);
 
-  const SkillBar: React.FC<{ skill: Skill; index: number }> = ({ skill }) => {
+  const SkillCard: React.FC<{ skill: Skill; index: number }> = ({ skill, index }) => {
     const isAnimated = animatedSkills.has(skill.name);
+    const IconComponent = skill.icon;
     
     return (
-      <div className="mb-4 group">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-            {skill.name}
-          </span>
-          <span className="text-sm font-bold text-gray-600 dark:text-gray-400">
-            {skill.percentage}%
-          </span>
-        </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-          <div
-            className={`h-2.5 bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 ease-out relative`}
-            style={{
-              width: isAnimated ? `${skill.percentage}%` : '0%',
-            }}
-          >
-            <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse"></div>
+      <div 
+        className={`group relative bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 transform border border-gray-200 dark:border-gray-700 ${
+          isAnimated ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+        style={{
+          transitionDelay: `${index * 100}ms`,
+        }}
+      >
+        {/* Glow effect */}
+        <div className={`absolute inset-0 bg-gradient-to-r ${skill.color} rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`}></div>
+        
+        <div className="relative z-10 text-center">
+          <div className={`w-16 h-16 bg-gradient-to-r ${skill.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
+            <IconComponent className="w-8 h-8 text-white" />
           </div>
+          
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
+            {skill.name}
+          </h3>
         </div>
+
+        {/* Floating particles */}
+        <div className="absolute top-2 right-2 w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-ping"></div>
+        <div className="absolute bottom-2 left-2 w-1 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-ping delay-700"></div>
       </div>
     );
   };
@@ -120,26 +146,26 @@ const Skills: React.FC = () => {
             </span>
           </h2>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="space-y-12">
             {skillCategories.map((category, categoryIndex) => (
               <div
                 key={category.title}
-                className={`bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${
+                className={`${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{
                   transitionDelay: `${categoryIndex * 200}ms`,
                 }}
               >
-                <h3 className="text-xl font-bold mb-6 text-center">
+                <h3 className="text-2xl font-bold mb-8 text-center">
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     {category.title}
                   </span>
                 </h3>
                 
-                <div className="space-y-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                   {category.skills.map((skill, skillIndex) => (
-                    <SkillBar
+                    <SkillCard
                       key={skill.name}
                       skill={skill}
                       index={skillIndex}
